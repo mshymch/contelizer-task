@@ -1,15 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aplikacje</title>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-<div>
-    Wybierz aplikację
-</div>
-<a href="/text">Przetwarzanie Tekstu</a>
-<br>
-<a href="/walidator">Walidator PESEL</a>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-logo">Contelizer</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1>Wybierz aplikację</h1>
+        <p>Naciśnij przycisk poniżej.</p>
+
+        <div class="button-container">
+            <a href="/text"><button class="main-button">Przemieszanie tekstu</button></a>
+            <a href="/walidate"><button class="main-button">Walidacja PESEL</button></a>
+        </div>
+    </main>
+
 </body>
 </html>

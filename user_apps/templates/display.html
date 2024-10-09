@@ -1,6 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikacje</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-logo">Contelizer</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1>Oto twój przemieszany tekst</h1>
+        <p>Skopiuj do schoiwka aby zapisać.</p>
+        <p>Pliki nie są zapisywane na serwerze, po opuszczeniu strony ten tekst zniknie.</p>
+
+        {% if file_content %}
+            <pre class="file-content"><b>{{ file_content }}</b></pre>
+        {% else %}
+            <p>Wystąpił błąd.</p>
+        {% endif %}
+    </main>
+
+</body>
+</html>
+
+<!--
 <h1>Last Uploaded File Content</h1>
 {% if file_content %}
     <pre>{{ file_content }}</pre>
 {% else %}
     <p>No files have been uploaded yet.</p>
 {% endif %}
+-->
