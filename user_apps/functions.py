@@ -24,3 +24,10 @@ def mix_middle_chars(text):
             scrambled_words.append(scrambled_word)
 
     return ''.join(scrambled_words)
+
+
+def verify_pesel_data(pesel):
+    if len(str(pesel)) != 11:
+        return {'PESEL ma nieprawidłową ilość znaków: ': len(str(pesel))}
+    else:
+        return pesel

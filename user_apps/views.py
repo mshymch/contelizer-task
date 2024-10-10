@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import UploadFileForm
 from .models import UploadedFile
-from .functions import mix_middle_chars
+from .functions import mix_middle_chars, verify_pesel_data
 
 
 # Create your views here.
@@ -38,3 +38,19 @@ def display_file(request):
         return redirect('/text')
 
     return render(request, 'display.html', {'file_content': output_content})
+
+
+def validate_pesel(request):
+    result = None
+    result_is_dict = False
+
+    if request.method == "POST":
+        pesel = request.POST.get('pesel')
+        if pesel:
+            try:
+                result = verify_pesel_data(int(pesel))
+                result_is_dict = True
+            except ValueError:
+                result = "Wprowadzona wartość nie jest numerem."
+
+    return render(request, 'pesel.html', {'result': result, 'result_is_dict': result_is_dict})

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiply by Two</title>
+</head>
+<body>
+    <h1>Walidacja numeru PESEL</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="pesel">Podaj numer PESEL: </label>
+        <input type="text" name="pesel">
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if result is not None and not result_is_dict %}
+        <h3>
+            {{result}}
+        </h3>
+    {% elif result is not None and result_is_dict %}
+        {% for key, value in result.items %}
+            <h3>
+                {{ key }} {{ value }}
+            </h3>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
