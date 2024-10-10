@@ -15,7 +15,7 @@ def upload_file(request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('display_file')
+            return redirect(display_file)
     else:
         form = UploadFileForm()
     return render(request, 'upload.html', {'form': form})
@@ -48,7 +48,8 @@ def validate_pesel(request):
         pesel = request.POST.get('pesel')
         if pesel:
             try:
-                result = verify_pesel_data(int(pesel))
+                int(pesel)
+                result = verify_pesel_data(pesel)
                 result_is_dict = True
             except ValueError:
                 result = "Wprowadzona wartość nie jest numerem."

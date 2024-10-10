@@ -1,29 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiply by Two</title>
+    <title>Sprawdź PESEL</title>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <h1>Walidacja numeru PESEL</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <label for="pesel">Podaj numer PESEL: </label>
-        <input type="text" name="pesel">
-        <button type="submit">Submit</button>
-    </form>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-logo">Contelizer</a>
+        </div>
+    </nav>
 
-    {% if result is not None and not result_is_dict %}
-        <h3>
-            {{result}}
-        </h3>
-    {% elif result is not None and result_is_dict %}
-        {% for key, value in result.items %}
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1>Walidacja numeru PESEL</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="pesel">Podaj numer PESEL: </label>
+            <input type="text" name="pesel">
+            <button type="submit">Submit</button>
+        </form><br><br>
+
+        {% if result is not None and not result_is_dict %}
             <h3>
-                {{ key }} {{ value }}
+                {{result}}
             </h3>
-        {% endfor %}
-    {% endif %}
+        {% elif result is not None and result_is_dict %}
+            {% for key, value in result.items %}
+                {% if value == 'PESEL jest poprawny' %}
+                    {{ key }} <b style="color:MediumSeaGreen;">{{ value }}</b><br><br>
+                {% elif value == 'PESEL jest nieprawidłowy, błędna cyfra kontrolna' %}
+                    {{ key }} <b style="color:Tomato;">{{ value }}</b><br><br>
+                {% else %}
+                    {{ key }} <b>{{ value }}</b><br><br>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </main>
 </body>
 </html>
